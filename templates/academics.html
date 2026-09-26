@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Academics - Student Tracker</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>📚 Academic Details</h1>
+
+    <p>Enter and manage your academic information.</p>
+
+    <hr>
+
+    <h2>Student Academic Information</h2>
+
+    <form method="POST" action="/academics">
+
+        <label>Student Name:</label>
+        <input type="text"
+               name="student_name"
+               placeholder="Enter your name"
+               required>
+
+        <br><br>
+
+        <label>Current CGPA:</label>
+        <input type="number"
+               name="cgpa"
+               placeholder="Enter CGPA"
+               step="0.01"
+               min="0"
+               max="10"
+               required>
+
+        <br><br>
+
+        <label>Semester:</label>
+
+        <select name="semester" required>
+            <option value="1st Semester">1st Semester</option>
+            <option value="2nd Semester">2nd Semester</option>
+            <option value="3rd Semester">3rd Semester</option>
+            <option value="4th Semester">4th Semester</option>
+            <option value="5th Semester">5th Semester</option>
+            <option value="6th Semester">6th Semester</option>
+            <option value="7th Semester">7th Semester</option>
+            <option value="8th Semester">8th Semester</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Save Academic Details</button>
+
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skills</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>💻 Skills</h1>
+
+    <p>Enter your skill details.</p>
+
+    <form method="POST">
+
+        <label>Skill Name:</label>
+        <input type="text"
+               name="skill_name"
+               placeholder="Example: Python"
+               required>
+
+        <br><br>
+
+        <label>Skill Level:</label>
+        <select name="skill_level" required>
+            <option value="">Select level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+        </select>
+
+        <br><br>
+
+        <label>Progress (%):</label>
+        <input type="number"
+               name="progress"
+               min="0"
+               max="100"
+               required>
+
+        <br><br>
+
+        <button type="submit">Save Skill</button>
+
+    </form>
+
+    <hr>
+
+    <h2>📊 Skill Records</h2>
+
+    {% if records %}
+
+    <table border="1" cellpadding="12">
+        <tr>
+            <th>Skill Name</th>
+            <th>Skill Level</th>
+            <th>Progress</th>
+        </tr>
+
+        {% for record in records %}
+        <tr>
+            <td>{{ record["skill_name"] }}</td>
+            <td>{{ record["skill_level"] }}</td>
+            <td>{{ record["progress"] }}%</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <p>No skill records yet.</p>
+
+    {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Certifications</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>🏆 Certifications</h1>
+
+    <p>Enter your certification details.</p>
+
+    <form method="POST">
+
+        <label>Certificate Name:</label>
+        <input type="text"
+               name="certificate_name"
+               placeholder="Example: Python Programming"
+               required>
+
+        <br><br>
+
+        <label>Platform / Organization:</label>
+        <input type="text"
+               name="organization"
+               placeholder="Example: Infosys Springboard"
+               required>
+
+        <br><br>
+
+        <label>Certificate Link:</label>
+        <input type="url"
+               name="certificate_link"
+               placeholder="https://..."
+               required>
+
+        <br><br>
+
+        <button type="submit">Save Certificate</button>
+
+    </form>
+
+    <hr>
+
+    <h2>📜 Certificate Records</h2>
+
+    {% if records %}
+
+    <table border="1" cellpadding="12">
+
+        <tr>
+            <th>Certificate Name</th>
+            <th>Organization</th>
+            <th>Certificate Link</th>
+        </tr>
+
+        {% for record in records %}
+
+        <tr>
+            <td>{{ record["certificate_name"] }}</td>
+            <td>{{ record["organization"] }}</td>
+            <td>
+                <a href="{{ record['certificate_link'] }}" target="_blank">
+                    View Certificate
+                </a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <p>No certificate records yet.</p>
+
+    {% endif %}
+
+</body>
+</html>

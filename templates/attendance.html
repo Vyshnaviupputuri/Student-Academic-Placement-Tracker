@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>📅 Attendance</h1>
+
+    <p>Enter your attendance details.</p>
+
+    <form method="POST">
+
+        <label>Subject:</label>
+        <input type="text" name="subject" placeholder="Enter subject" required>
+
+        <br><br>
+
+        <label>Total Classes:</label>
+        <input type="number" name="total_classes" min="1" required>
+
+        <br><br>
+
+        <label>Attended Classes:</label>
+        <input type="number" name="attended_classes" min="0" required>
+
+        <br><br>
+
+        <button type="submit">Save Attendance</button>
+
+    </form>
+
+    <hr>
+
+    <h2>📊 Attendance Records</h2>
+
+    {% if records %}
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>Subject</th>
+            <th>Total Classes</th>
+            <th>Attended Classes</th>
+            <th>Attendance %</th>
+        </tr>
+
+        {% for record in records %}
+
+        <tr>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ "%.2f"|format((record[3] / record[2]) * 100) }}%</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <p>No attendance records yet.</p>
+
+    {% endif %}
+
+</body>
+</html>

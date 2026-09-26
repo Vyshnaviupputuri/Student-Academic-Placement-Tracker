@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <h1>🚀 Projects</h1>
+
+    <p>Enter your project details.</p>
+
+    <form method="POST">
+
+        <label>Project Name:</label>
+        <input type="text" name="project_name" placeholder="Example: Student Tracker" required>
+
+        <br><br>
+
+        <label>Description:</label>
+        <textarea name="description" placeholder="Describe your project" required></textarea>
+
+        <br><br>
+
+        <label>Technologies Used:</label>
+        <input type="text" name="technologies" placeholder="Example: Python, Flask, SQLite" required>
+
+        <br><br>
+
+        <label>GitHub Link:</label>
+        <input type="url" name="github_link" placeholder="https://github.com/..." required>
+
+        <br><br>
+
+        <button type="submit">Save Project</button>
+
+    </form>
+
+    <hr>
+
+    <h2>📁 Project Records</h2>
+
+{% if records %}
+
+<table border="1" cellpadding="12">
+    <tr>
+        <th>Project Name</th>
+        <th>Description</th>
+        <th>Technologies</th>
+        <th>GitHub Link</th>
+    </tr>
+
+    {% for record in records %}
+    <tr>
+        <td>{{ record["project_name"] }}</td>
+        <td>{{ record["description"] }}</td>
+        <td>{{ record["technologies"] }}</td>
+        <td>
+            <a href="{{ record['github_link'] }}" target="_blank">
+                View Project
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% else %}
+
+<p>No project records yet.</p>
+
+{% endif %}
